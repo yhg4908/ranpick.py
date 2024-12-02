@@ -12,15 +12,6 @@ setuptools.setup(
     long_description=open('README.md').read(), # README.md에 보통 모듈 설명을 해놓는다.
     long_description_content_type="text/markdown",
     url="https://github.com/yhg4908/ranpick.py/",
-    install_requires=[ # 필수 라이브러리들을 포함하는 부분인 것 같음, 다른 방식으로 넣어줄 수 있는지는 알 수 없음
-    "matplotlib==3.5.2", 
-    "numpy==1.21.5", 
-    "pandas==1.4.4", 
-    "scikit_learn==1.2.0", 
-    "scipy==1.9.1", 
-    "seaborn==0.11.2", 
-    "setuptools==63.4.1", 
-    ],
     package_data={'': ['LICENSE.txt']}, # 원하는 파일 포함, 제대로 작동되지 않았음
     include_package_data=True,
     packages = setuptools.find_packages(), # 모듈을 자동으로 찾아줌
