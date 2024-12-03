@@ -1,3 +1,1 @@
-from .number import Ranpick
-
-number = Ranpick.number
+from .number import number
