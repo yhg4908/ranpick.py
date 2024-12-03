@@ -117,3 +117,19 @@ from datetime import datetime
 date_number = int(datetime.now().strftime("%Y%m%d%H%M%S"))
 
 print(ranpick.number(date_number, date_number × 10))
+```
+이 코드는 datetime 라이브러리에서 출력된 시간을 활용하여 난수를 출력하도록 만들었습니다.
+
+##### ramdom 모듈 응용
+아래는 random 모듈을 사용하여 응용한 코드입니다.
+```python
+from ranpick import number
+import random
+
+random_number = random.randint(1,10)
+
+print(random_number, 100)
+```
+이 코드는 random 모듈로 출력된 난수를 아용해 또 한번 난수를 생성합니다. 응용을 하면 거의 예측 불가능의 난수를 만들 수 있습니다.
+
+다만 이 방식의 코드를 사용하면 컴퓨터의 많은 리소스가 요구되기 때문에 권장하지 않습니다.
