@@ -1,8 +1,3 @@
-# README.md 파일의 내용
-
-
-
-readme_content = """
 
 # Ranpick
 
