@@ -6,7 +6,7 @@ setuptools.setup(
     author="raimy5810", 
     author_email="yhg4908@kakao.com", 
     description="Generates a random numbe", 
-    long_description=open('README.md').read(), 
+    long_description=open('README_EN.md').read(), 
     long_description_content_type="text/markdown",
     url="https://github.com/yhg4908/ranpick.py/",
     include_package_data=True,
