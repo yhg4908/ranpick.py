@@ -135,3 +135,11 @@ print(random_number, 100)
 This code generates another random number by using the random number output from the random module. It can be applied to produce almost unpredictable random numbers.
 
 However, using this type of code is not recommended because it requires a lot of resources on your computer.
+
+
+## Bug report
+
+
+Please report bugs on the site below (github).
+
+<https://github.com/yhg4908/ranpick.py/issues>
