@@ -1,3 +1,6 @@
+The English version of the README.md file was created by a translator. Therefore, the translation may not be accurate. If you can use Korean, we recommend that you view the Korean document.
+[한국어 문서 바로가기(korean](https://github.com/yhg4908/ranpick.py/README_KR.md)
+
 # Ranpick
 
 
