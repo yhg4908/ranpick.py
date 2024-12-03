@@ -1,69 +1,36 @@
 import time
-
 import hashlib
+from typing import Union
 
-from typing import Union, Optional
-
-
-
-class RanPick:
-
+class Ranpick:
     @staticmethod
-
-    def number(
-
-        start: Union[int, float] = 0, 
-
-        end: Union[int, float] = 100000000, 
-
-        decimal_places: Optional[int] = None
-
-    ) -> Union[int, float]:
-
+    def number(start: Union[int, str] = 0, end: Union[int, str] = 100000000, precision: str = None) -> Union[int, float]:
         """
-
-        Generate a random number within a specified range.
-
-        - start: Start of the range (inclusive).
-
-        - end: End of the range (exclusive).
-
-        - decimal_places: If specified, generates a floating-point number with this many decimal places.
-
-
-
-        Uses nanoseconds and hash values to ensure randomness.
-
+        Generates a random number within a given range, optionally with decimal precision.
+        :param start: Starting value of the range (can be int or evaluatable str).
+        :param end: Ending value of the range (can be int or evaluatable str).
+        :param precision: Decimal precision format (e.g., "d3" for 3 decimal places).
+        :return: Random number as int or float.
         """
-
-        # Current nanoseconds for unique seed
-
-        nano_time = time.time_ns()
-
         
-
-        # Hash the nano_time for additional randomness
-
-        hash_seed = int(hashlib.sha256(str(nano_time).encode()).hexdigest(), 16)
-
+        # Evaluate start and end if they are expressions
+        if isinstance(start, str):
+            start = eval(start)
+        if isinstance(end, str):
+            end = eval(end)
         
+        # Ensure proper range
+        if start > end:
+            start, end = end, start
 
-        # Compute a random value within range
+        # Generate a base seed using nanoseconds and a hash function
+        current_time = time.time_ns()
+        seed = int(hashlib.sha256(str(current_time).encode()).hexdigest(), 16)
+        rng = seed % (end - start + 1) + start
 
-        random_base = hash_seed % (10**8) / (10**8)  # Normalize to [0, 1)
+        if precision and precision.startswith('d'):
+            decimals = int(precision[1:])
+            scale = 10 ** decimals
+            rng = round(start + (rng % (end - start)) / scale, decimals)    
 
-        random_value = start + (end - start) * random_base
-
-
-
-        # If decimal places are specified, round the result
-
-        if decimal_places is not None:
-
-            return round(random_value, decimal_places)
-
-        
-
-        # Otherwise, return an integer
-
-        return int(random_value)
+        return rng
