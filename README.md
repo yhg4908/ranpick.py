@@ -17,7 +17,7 @@ A system using text is also currently being developed.
 
 
 
-1. Use 'pip' to install the lanpick:
+1. Use 'pip' to install the ranpick:
 
    ```bash
    pip install ranpick
