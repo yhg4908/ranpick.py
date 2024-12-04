@@ -86,7 +86,7 @@ By default, a generated random number can only be generated with integers. Howev
 decimal_number = ranpick.rannumber(0, 1, "d3")
 
 print(decimal_number)
-print(ranpick.number(0,1"d3"))
+print(ranpick.number(0,1, "d3"))
 ```
 This example code is a code that outputs numbers between 0 and 1 up to three decimal places. `"d3"` means that it outputs up to three decimal places.
 
