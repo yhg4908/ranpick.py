@@ -1,7 +1,6 @@
 import time
 import hashlib
 from typing import Union, Optional
-from .errors import RanpickError
 
 def _generate_seed() -> int:
     """나노초를 해시하여 시드 생성"""
@@ -30,26 +29,27 @@ def rannumber(
     - start, end 범위 설정 가능.
     - decimal_option: "dX"로 소수 자릿수 설정.
     """
+    # 입력 유효성 검사
     if isinstance(start, str):
         try:
             start = eval(start)
-        except Exception as e:
-            raise RanpickError("Invalid start expression.", code_snippet=start) from e
+        except Exception:
+            raise ValueError(f"ranpickError: Invalid start expression: {start}.")
     if isinstance(end, str):
         try:
             end = eval(end)
-        except Exception as e:
-            raise RanpickError("Invalid end expression.", code_snippet=end) from e
+        except Exception:
+            raise ValueError(f"ranpickError: Invalid end expression: {end}.")
 
     decimal_places = 0
     if decimal_option and decimal_option.startswith("d"):
         try:
             decimal_places = int(decimal_option[1:])
-        except ValueError as e:
-            raise RanpickError("Invalid decimal option format.", code_snippet=decimal_option) from e
+        except ValueError:
+            raise ValueError(f"ranpickError: Invalid decimal option format: {decimal_option}.")
 
     if start >= end:
-        raise RanpickError("Start value must be less than end value.")
+        raise ValueError("ranpickError: Start value must be less than end value.")
 
     seed = _generate_seed()
     return _random_from_seed(seed, start, end, decimal_places)
