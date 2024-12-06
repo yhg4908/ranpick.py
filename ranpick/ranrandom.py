@@ -1,20 +1,28 @@
 from .errors import RanpickError
 
-def ranrandom(*choices):
+def ranrandom(*choices, k: int = 1):
     """
-    리스트 요소 랜덤 선택.
+    리스트 요소 랜덤 선택 (다중 선택 지원).
     
-    choices:
-      - 예: ("왼쪽"33, "오른쪽"33, "가운데"33, "꽝"1)
-      - 각 옵션은 "옵션명"확률 형식으로 작성.
+    Args:
+        choices:
+          - 예: ("왼쪽"33, "오른쪽"33, "가운데"33, "꽝"1)
+          - 각 옵션은 "옵션명"확률 형식으로 작성.
+        k: 선택할 요소의 개수. 기본값은 1.
     
     조건:
-      1. 옵션 최소 2개 이상.
-      2. 확률의 합은 100이어야 함.
+        1. 옵션 최소 2개 이상.
+        2. 확률의 합은 100이어야 함.
+        3. k는 1 이상이어야 함.
+    
+    Returns:
+        선택된 요소들의 리스트 (k = 1이면 단일 요소 반환).
     """
     # 유효성 검사
     if len(choices) < 2:
         raise RanpickError("You must provide at least two options to choose from.")
+    if k < 1:
+        raise RanpickError("The number of selections (k) must be at least 1.")
     
     elements = []
     probabilities = []
@@ -37,4 +45,5 @@ def ranrandom(*choices):
 
     # 랜덤 요소 선택
     from random import choices as random_choices
-    return random_choices(elements, probabilities, k=1)[0]
+    selected = random_choices(elements, probabilities, k=k)
+    return selected[0] if k == 1 else selected
