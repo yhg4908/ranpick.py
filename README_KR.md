@@ -143,7 +143,7 @@ print(random_number, 100)
 random = ranpick.ranrandom("왼쪽", "오른쪽", "가운데", "꽝")
 
 print(random)
-print("왼쪽", "오른쪽", "가운데", "꽝")
+print(ranpick.ranrandom("왼쪽", "오른쪽", "가운데", "꽝"))
 ```
 `ranpick.ranrandom()`을 이용할수 있습니다. `()` 안에는 `("당첨", "꽝")`같은 형식으로 작성할 수 있습니다.
 이곳에 넣은 항목들 중 하나를 랜덤으로 선택합니다.
