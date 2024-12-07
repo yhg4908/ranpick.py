@@ -7,7 +7,6 @@ The English version of the README.md file was created by a translator. Therefore
 
 Ranpick complements the shortcomings of the existing PRNG method and generates random numbers with nanoseconds and hash-based systems.
 
-A system using text is also currently being developed.
 
 ---
 
@@ -36,6 +35,8 @@ A system using text is also currently being developed.
 As of `2024.12.3 (KST)`, the modules currently available are as follows.
 
 - rannumber: `Produces a random number in the form of a number`
+- ranrandom: Select a random value from the list. (Applicable starting from 2.1.0)
+
 
 
 ### number - Generating a numeric random number
@@ -127,6 +128,36 @@ This code generates another random number by using the random number output from
 
 However, using this type of code is not recommended because it requires a lot of resources on your computer.
 
+### ranrandom - Random Value Selection
+`ranrandom` selects and outputs a random value from a list.
+
+#### Basic Usage
+You can use the `ranrandom` module as shown below:
+```python
+random = ranpick.ranrandom("left", "right", "center", "miss")
+
+print(random)
+print("left", "right", "center", "miss")
+```
+You can use `ranpick.ranrandom()`. Inside the parentheses, you can input items in a format such as `("win", "miss")`.
+One of the items listed here will be randomly selected.
+At least two items must be provided.
+
+#### Setting Probabilities
+You can set the probabilities for each item. Please refer to the example code below:
+```python
+random = ranpick.ranrandom(("left", 33), ("right", 33), ("center", 33), ("miss", 1))
+
+print(random)
+print(("left", 33), ("right", 33), ("center", 33), ("miss", 1))
+```
+You can add another pair of parentheses `()` inside the main `()`.
+Within this added `()`, you can specify items in the format `("item_name", probability[%])`.
+The total sum of all probabilities must equal 100, otherwise an error will occur.
+```python
+print("left", ("right", 50), "center", "miss")
+```
+If some probabilities are omitted as shown above, the remaining probabilities will be automatically redistributed among the unspecified items.
 
 ## Bug report
 
