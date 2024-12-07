@@ -25,6 +25,6 @@ setup(
         'Programming Language :: Python :: 3.13',
     ],
     python_requires='>=3.7',
-    package_data={'': ['LICENSE.txt', 'README.md', 'README_KR.md']},
+    package_data={'': ['LICENSE', 'README.md', 'README_KR.md', 'UPDATE.md']},
     keywords='random number generation entropy ranpick',
 )
