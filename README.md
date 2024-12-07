@@ -9,6 +9,7 @@ The English version of the README.md file was created by a translator. Therefore
 # Ranpick
 [![PyPI version](https://badge.fury.io/py/ranpick.svg)](https://badge.fury.io/py/ranpick)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ranpick)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/ranpick)
 
 
 
