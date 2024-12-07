@@ -25,9 +25,9 @@ def ranrandom(*options: Union[str, Tuple[str, int]]) -> str:
     """
     리스트에서 랜덤으로 항목을 선택하는 함수.
     
-    - 단순한 항목 리스트를 제공하거나, 확률을 지정 가능.
-    - 확률 합이 100이 아니거나 선택 항목이 2개 미만인 경우 에러를 발생시킴.
-    - 확률 미지정 시 균등 분배로 자동 설정.
+    - 항목을 단순 문자열로 제공하거나, 확률을 지정 가능.
+    - 확률 합이 100이 아니거나 항목이 2개 미만이면 에러 발생.
+    - 확률을 지정하지 않은 항목은 자동으로 균등 분배.
     """
     if len(options) < 2:
         raise RanpickError(
@@ -37,6 +37,8 @@ def ranrandom(*options: Union[str, Tuple[str, int]]) -> str:
 
     items = []
     probabilities = []
+    fixed_probability_sum = 0  # 명시적으로 지정된 확률 합
+    unspecified_count = 0     # 확률이 명시되지 않은 항목 수
 
     for option in options:
         if isinstance(option, tuple):
@@ -48,31 +50,51 @@ def ranrandom(*options: Union[str, Tuple[str, int]]) -> str:
                 )
             items.append(item)
             probabilities.append(probability)
+            fixed_probability_sum += probability
         elif isinstance(option, str):
             items.append(option)
+            probabilities.append(None)  # 확률 미지정 상태로 추가
+            unspecified_count += 1
         else:
             raise RanpickError(
                 "Invalid option format",
                 code=str(option)
             )
 
-    if len(probabilities) == 0:
-        probabilities = [100 // len(items)] * len(items)
-        for i in range(100 % len(items)):
+    # 확률 분배 로직
+    if unspecified_count > 0:
+        # 미지정 확률 값 계산
+        remaining_probability = 100 - fixed_probability_sum
+        if remaining_probability < 0:
+            raise RanpickError(
+                "The sum of specified probabilities exceeds 100",
+                code=str(options)
+            )
+        equal_share = remaining_probability // unspecified_count
+        for i in range(len(probabilities)):
+            if probabilities[i] is None:
+                probabilities[i] = equal_share
+
+        # 남은 확률이 정확히 나누어떨어지지 않는 경우 보정
+        remaining_mod = remaining_probability % unspecified_count
+        for i in range(remaining_mod):
             probabilities[i] += 1
 
+    # 최종 확률 합 검증
     if sum(probabilities) != 100:
         raise RanpickError(
             "The sum of each probability does not add up to 100",
             code=str(options)
         )
 
+    # 누적 가중치 계산
     cumulative_weights = []
     cumulative_sum = 0
     for p in probabilities:
         cumulative_sum += p
         cumulative_weights.append(cumulative_sum)
 
+    # 난수 생성 및 결과 선택
     random_seed = _generate_seed() % 100
     for idx, weight in enumerate(cumulative_weights):
         if random_seed < weight:
