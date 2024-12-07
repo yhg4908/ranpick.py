@@ -5,6 +5,8 @@
 
 # Ranpick
 [![PyPI version](https://badge.fury.io/py/ranpick.svg)](https://badge.fury.io/py/ranpick)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/:ranpick)
+
 
 
 `Ranpick`은 기존의 PRNG 방식의 단점을 보완하고 나노초, 해시 기반의 시스템으로 난수를 생성합니다.
