@@ -5,7 +5,7 @@
 
 # Ranpick
 [![PyPI version](https://badge.fury.io/py/ranpick.svg)](https://badge.fury.io/py/ranpick)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/:ranpick)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ranpick)
 
 
 
