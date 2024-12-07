@@ -1,3 +1,4 @@
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white)
 
 # Ranpick
 
@@ -5,9 +6,6 @@
 
 `Ranpick`은 기존의 PRNG 방식의 단점을 보완하고 나노초, 해시 기반의 시스템으로 난수를 생성합니다.
 
-현재 문자를 이용한 시스템도 개발중에 있습니다.
-
-버전: V2.0.0
 
 ---
 
