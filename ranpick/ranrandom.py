@@ -7,11 +7,19 @@ from typing import List, Tuple, Union
 class RanpickError(Exception):
     """ranpick 모듈의 커스텀 에러 클래스"""
     def __init__(self, message: str, code: str):
-        # 호출 위치 동적 추적
         frame = inspect.currentframe().f_back
         line_number = frame.f_lineno
         self.message = f"ranpickError: (Line {line_number}) {message}: {code}"
         super().__init__(self.message)
+
+def _generate_seed() -> int:
+    """
+    현재 시간을 기반으로 해시값을 생성하여 난수 시드를 반환하는 내부 함수.
+    """
+    current_time = time.time_ns()  # 나노초 단위 현재 시간
+    time_hash = hashlib.sha256(str(current_time).encode()).hexdigest()
+    seed = int(time_hash, 16)  # 16진수를 정수로 변환
+    return seed
 
 def ranrandom(*options: Union[str, Tuple[str, int]]) -> str:
     """
@@ -21,7 +29,6 @@ def ranrandom(*options: Union[str, Tuple[str, int]]) -> str:
     - 확률 합이 100이 아니거나 선택 항목이 2개 미만인 경우 에러를 발생시킴.
     - 확률 미지정 시 균등 분배로 자동 설정.
     """
-    # 입력 확인
     if len(options) < 2:
         raise RanpickError(
             "At least two options must be provided",
@@ -49,20 +56,17 @@ def ranrandom(*options: Union[str, Tuple[str, int]]) -> str:
                 code=str(option)
             )
 
-    # 확률 자동 균등 분배
     if len(probabilities) == 0:
         probabilities = [100 // len(items)] * len(items)
-        for i in range(100 % len(items)):  # 나머지 확률 분배
+        for i in range(100 % len(items)):
             probabilities[i] += 1
 
-    # 확률 합 확인
     if sum(probabilities) != 100:
         raise RanpickError(
             "The sum of each probability does not add up to 100",
             code=str(options)
         )
 
-    # 확률 기반 랜덤 선택
     cumulative_weights = []
     cumulative_sum = 0
     for p in probabilities:
