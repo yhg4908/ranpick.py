@@ -145,7 +145,7 @@ You can use the `ranrandom` module as shown below:
 random = ranpick.ranrandom("left", "right", "center", "miss")
 
 print(random)
-print("left", "right", "center", "miss")
+print(ranpick.ranrandom("left", "right", "center", "miss"))
 ```
 You can use `ranpick.ranrandom()`. Inside the parentheses, you can input items in a format such as `("win", "miss")`.
 One of the items listed here will be randomly selected.
