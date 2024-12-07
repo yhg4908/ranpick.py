@@ -26,5 +26,5 @@ setup(
     ],
     python_requires='>=3.7',
     package_data={'': ['LICENSE', 'README.md', 'README_KR.md', 'UPDATE.md']},
-    keywords='random number generation entropy ranpick',
+    keywords='random number generation entropy ranpick list Probability',
 )
