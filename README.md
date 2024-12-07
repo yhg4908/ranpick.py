@@ -1,7 +1,14 @@
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white)
+![PyPI](https://img.shields.io/badge/PyPI-3775A9?style=for-the-badge&logo=PyPI&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+
+
 The English version of the README.md file was created by a translator. Therefore, the translation may not be accurate. If you can use Korean, we recommend that you view the Korean document.
 [한국어 문서 바로가기(korean)](https://github.com/yhg4908/ranpick.py/blob/main/README_KR.md)
 
 # Ranpick
+[![PyPI version](https://badge.fury.io/py/ranpick.svg)](https://badge.fury.io/py/ranpick)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ranpick)
 
 
 
