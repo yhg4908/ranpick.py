@@ -167,6 +167,8 @@ print("left", ("right", 50), "center", "miss")
 ```
 If some probabilities are omitted as shown above, the remaining probabilities will be automatically redistributed among the unspecified items.
 
+#### Duplicate selection (planned for 2.2.0)
+
 ## Bug report
 
 
