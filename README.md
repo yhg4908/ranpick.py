@@ -167,7 +167,32 @@ print("left", ("right", 50), "center", "miss")
 ```
 If some probabilities are omitted as shown above, the remaining probabilities will be automatically redistributed among the unspecified items.
 
-#### Duplicate selection (planned for 2.2.0)
+#### Multiple selection (planned for 2.2.0)
+Of course, multiple selection is possible. Please follow the example below.
+```python
+random = ranrandom("a", "b", "c", "d", DS=2)
+
+print(random)
+```
+This code selects 2 out of a, b, c, d and prints them. DS is in charge of how many to select and print.
+
+If the value of DS is 2, 2 are selected from the list. If `DS=3`, 3 are selected and printed.
+```r
+a, d
+```
+It is printed like this.
+
+##### Print in list form
+Duplicated values ​​can also be printed in list form. 
+```python
+random = ranrandom("a", "b", "c", "d", DS=3, as_list=True)
+
+print(random)
+```
+If you want to print in list format, use `as_list`. If you set the value of as_list to True and run it, it will print as follows.
+```r
+['b', 'c', 'a']
+```
 
 ## Bug report
 
