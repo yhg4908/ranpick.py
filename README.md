@@ -40,7 +40,7 @@ Ranpick complements the shortcomings of the existing PRNG method and generates r
 ## Modules and Use Guides
 
 
-As of `2024.12.7 (KST)`, the modules currently available are as follows.
+As of `2024.12.22 (KST)`, the modules currently available are as follows.
 
 - rannumber: `Produces a random number in the form of a number`
 - ranrandom: `Select a random value from the list.` (2.1.0~)
