@@ -7,7 +7,7 @@ The English version of the README.md file was created by a translator. Therefore
 [한국어 문서 바로가기(korean)](https://github.com/yhg4908/ranpick.py/blob/main/README_KR.md)
 
 # Ranpick
-[![PyPI version](https://badge.fury.io/py/ranpick.svg)](https://badge.fury.io/py/ranpick)
+[![PyPI - Version](https://img.shields.io/pypi/v/ranpick)](https://pypi.org/project/ranpick)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ranpick)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/ranpick)
 
