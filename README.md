@@ -32,7 +32,7 @@ Ranpick complements the shortcomings of the existing PRNG method and generates r
 2. Add the import statement below to the code (.py) to import the ranpick:
 
    ```python
-   import ranpick
+   from ranpick import (modules)
    ```
 
 
