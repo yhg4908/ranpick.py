@@ -8,7 +8,10 @@ setup(
     description='A high-entropy random number generation library',
     long_description=open('README.md').read() if open('README.md', 'r').read() else '',
     long_description_content_type='text/markdown',
-    url='https://github.com/yhg4908/ranpick.py',
+    project_urls={
+        "Issues": "https://github.com/yhg4908/ranpick.py/issues",
+        "Repository": "https://github.com/yhg4908/ranpick.py",
+    },
     packages=find_packages(),
     install_requires=[],
     classifiers=[
