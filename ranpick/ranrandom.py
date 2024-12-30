@@ -9,7 +9,7 @@ class RanpickError(Exception):
         self.code = code
 
 
-def ranrandom(*options: Union[str, Tuple[str, int], str], **kwargs) -> Union[str, List[str]]:
+def ranrandom(*options: Union[str, Tuple[str, int]], **kwargs) -> Union[str, List[str]]:
     """
     Select random items from a list, with optional duplicate selection.
     
@@ -94,6 +94,8 @@ def ranrandom(*options: Union[str, Tuple[str, int], str], **kwargs) -> Union[str
 
     # Return as a list or a comma-separated string
     if as_list:
-        return selected
+        return selected  # Keep as list
     else:
-        return ",".join(selected)
+        if ds_count == 1:
+            return str(selected)  # Single selection as a string
+        return ",".join(selected)  # Properly join list items for multiple selections
