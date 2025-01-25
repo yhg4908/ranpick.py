@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name='ranpick',
     version='2.2.0',
-    author='rainy5810',
+    author='rainy58',
     author_email='yhg4908@kakao.com',
     description='A high-entropy random number generation library',
     long_description=open('README.md').read() if open('README.md', 'r').read() else '',
