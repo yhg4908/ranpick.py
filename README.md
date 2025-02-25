@@ -168,7 +168,7 @@ print("left", ("right", 50), "center", "miss")
 ```
 If some probabilities are omitted as shown above, the remaining probabilities will be automatically redistributed among the unspecified items.
 
-#### Multiple selection (planned for 2.2.0)
+#### Multiple selection (2.2.0~)
 Of course, multiple selection is possible. Please follow the example below.
 ```python
 random = ranrandom("a", "b", "c", "d", DS=2)
