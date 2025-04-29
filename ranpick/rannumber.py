@@ -19,29 +19,22 @@ def _apply_random_transformations(seed_tuple: tuple) -> float:
     """Apply various mathematical operations to increase entropy"""
     seed1, seed2, time_component = seed_tuple
     
-    # Mix different math operations based on seed values
-    operations = []
-    if seed1 % 4 == 0:
-        operations.append(lambda x: x * math.sin(x % (2**16)))
-    if seed1 % 4 == 1:
-        operations.append(lambda x: x * math.cos(x % (2**16)))
-    if seed1 % 4 == 2:
-        operations.append(lambda x: x * math.tan(math.pi * (x % 10) / 10))
-    if seed1 % 4 == 3:
-        operations.append(lambda x: x * math.log(abs(x) + 1, 10))
+    # Convert to a 0-1 range directly mimicking Python's random.random()
+    # Use both seed components and time component for better randomness
+    base_value = ((seed1 & 0xFFFFFF) ^ (seed2 & 0xFFFFFF) ^ (time_component & 0xFFFFFF))
+    max_val = 0xFFFFFF
     
-    # Apply selected operations
-    value = (seed1 ^ seed2) + time_component
-    for op in operations:
-        value = op(value)
-    
-    # Normalize to [0, 1)
-    return abs(value) % 1.0
+    # Create a value between 0 and 1 with high precision
+    return base_value / max_val
 
 def _random_from_seed(seed_tuple: tuple, start: float, end: float, decimal_places: int = 0) -> Union[int, float]:
     """Generate random number between start and end with specified decimal places"""
     # Get normalized random value [0, 1)
     normalized_value = _apply_random_transformations(seed_tuple)
+    
+    # For default 0-1 range, return the direct value
+    if start == 0 and end == 1 and decimal_places == 0:
+        return normalized_value
     
     # Scale to range [start, end]
     scaled_value = start + normalized_value * (end - start)
@@ -51,7 +44,7 @@ def _random_from_seed(seed_tuple: tuple, start: float, end: float, decimal_place
         multiplier = 10 ** decimal_places
         return math.floor(scaled_value * multiplier) / multiplier
     else:
-        # Return integer
+        # Return integer for non-default ranges
         return int(scaled_value)
 
 def rannumber(
