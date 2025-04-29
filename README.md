@@ -53,7 +53,7 @@ As of `2024.12.22 (KST)`, the modules currently available are as follows.
 
 `Number` generates a random number in the form of a normal number.
 
-You can generate numbers up to 100000000.
+You can generate numbers up to 0~1(3.0.0~).
 
 
 
@@ -102,7 +102,7 @@ This example code is a code that outputs numbers between 0 and 1 up to three dec
 
 If `"d4"` is used, it can be output up to four decimal places.
 
-It can be up to 10 digits.
+It can be up to 20 digits.(3.0.0~)
 
 
 #### Application
